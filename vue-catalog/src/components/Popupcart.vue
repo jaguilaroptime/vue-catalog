@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'showOrHiddenPopupCart',
+      'showOrHiddenPopupWishList',
     ]),
     
     totalPoints() {
@@ -37,7 +37,7 @@ export default {
         current + next.point, 0);
     },
     showPopupCart() {
-      this.showOrHiddenPopupCart();
+      this.showOrHiddenPopupWishList();
     },
   },
   computed: {

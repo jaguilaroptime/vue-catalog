@@ -1,7 +1,7 @@
 <template>
   <button :class="btnColor">
     <slot></slot>
-    <img v-if="cartIcon" src="../assets/images/cart.svg" alt="Cart Icon">
+    <img v-if="cartIcon" src="../assets/images/cart.svg">
   </button>
 </template>
 

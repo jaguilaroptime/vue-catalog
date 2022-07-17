@@ -1,43 +1,42 @@
 <template>
   <div class="container">
-
     <mainMenu>
       <btn btnColor="btn btn-small btn-info btn-popup"
          :cartIcon="true"
-         @click="showPopupCart">
-         Cart Prizes
+         @click="showPopupWishList">
+         Wish List
         <span class="btn-circle" v-if="getProductsInCart.length > 0">
            {{ getProductsInCart.length }}
         </span>
       </btn>
       <transition name="appear">
-        <popupCart class="cart" v-if="getPopupCart"/>
+        <popupCart class="cart" v-if="getPopupWishList"/>
       </transition>
     </mainMenu>
     <transition name="leave">
       <router-view></router-view>
     </transition>
-    <maskBg v-if="getPopupCart" @click="showPopupCart"/>
+    <maskBg v-if="getPopupWishList" @click="showPopupWishList"/>
 
-    <h1>All Prizes</h1>
+    <h1>List Prizes</h1>
     <ul class="listOfProducts">
       <li v-for="(product, index) in products" :key="index" class="product">
           <img :src="product.image">
-          <router-link to="/product-details">
-          <h2 class="product-name"
-              @click="addCurrentProduct(product)">
-            {{ product.name }}
-          </h2>
+          <router-link to="/prize">
+            <h2 class="product-name"
+                @click="addCurrentProduct(product)">
+              {{ product.name }}
+            </h2>
         </router-link>
 
-        <div class="product-price">
+        <div class="product-point">
           <span>Point {{ product.point }}</span>
         </div>
 
         <btn btnColor="btn btn-large btn-sucess"
             :cartIcon="true"
             @click="addProductToCart(product)">
-          Add to cart
+          Redeem Now
         </btn>
 
       </li>
@@ -65,19 +64,19 @@ export default {
       const { 
           products,
           getProductsInCart,
-          getPopupCart,
+          getPopupWishList,
           addCurrentProduct,
           addProductToCart,
-          showPopupCart
+          showPopupWishList
         } = useCatalog()
 
       return {
           products,
           getProductsInCart,
-          getPopupCart,
+          getPopupWishList,
           addCurrentProduct,
           addProductToCart,
-          showPopupCart
+          showPopupWishList
       }
 
     }
@@ -85,18 +84,6 @@ export default {
 </script>
 
 <style scoped>
-  @import '../assets/css/normalize.css';
-@import url('https://fonts.googleapis.com/css?family=Roboto');
-  body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #FAFAFA;
-  }
-
-  a {
-    color: #000;
-    text-decoration: none;
-  }
-
   .container {
     width: 100%;
   }
@@ -120,34 +107,6 @@ export default {
     align-items: center;
     justify-content: center;
   }
-
-  .leave-enter-active, .leave-leave-active {
-    transition: all 1.2s;
-  }
-  .leave-enter, .leave-leave-to {
-    opacity: 0;
-    transform: translateX(-50%);
-  }
-
-  .appear-enter-active {
-    animation: appear-animation .5s;
-  }
-
-  .appear-leave-active {
-    animation: appear-animation .5s reverse;
-  }
-
-  @keyframes appear-animation {
-    0% {
-      transform: translateY(-50%);
-      opacity: 0;
-    }
-    100% {
-      transform: translateY(0%);
-      opacity: 1;
-    }
-  }
-
   .listOfProducts {
     width: 100%;
     max-width: 1000px;
@@ -181,7 +140,7 @@ export default {
     text-decoration: underline;
   }
 
-  .product-price {
+  .product-point {
     width: 100%;
     align-self: flex-start;
     display: flex;

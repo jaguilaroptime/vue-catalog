@@ -10,12 +10,12 @@ const useCatalog = () => {
         //Getters
         products: computed(() => store.getters['getAllProducts']),
         getProductsInCart: computed(() => store.getters['getProductsInCart']),
-        getPopupCart: computed(() => store.getters['getPopupCart']),
+        getPopupWishList: computed(() => store.getters['getPopupWishList']),
 
         // Methods
         addCurrentProduct( product )  { store.commit('CURRENT_PRODUCT', product ) },
         addProductToCart: ( product ) => store.commit('ADD_PRODUCT', product ),
-        showPopupCart: () => store.commit('SHOW_POPUP_CART'),
+        showPopupWishList: () => store.commit('SHOW_POPUP_WISH_LIST'),
         //addProductToCart,
     }
 }

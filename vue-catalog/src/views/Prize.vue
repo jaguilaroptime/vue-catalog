@@ -11,11 +11,12 @@
       @click="addProductToCart(currentProduct)">
         Reedem Now
       </btn>
-      <!-- <btn btnColor="btn btn-large btn-info"
-          @click.native="openModal()">
+      <btn btnColor="btn btn-large btn-info"
+          @click="openModal()">
         More Info
-      </btn> -->
+      </btn>
     </div>
+    <modal>{{ currentProduct.details }}</modal>
   </div>
 </template>
 
@@ -23,11 +24,13 @@
 import { mapGetters, mapActions } from 'vuex';
 import btn from '../components/Btn';
 import stars from '../components/Stars';
+import modal from '../components/Modal';
 
 export default {
   components: {
     btn,
     stars,
+    modal,
   },
 
   computed: {

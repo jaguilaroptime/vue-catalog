@@ -46,7 +46,7 @@ export default createStore({
     cartProducts: [],
     currentProduct: {},
     showModal: false,
-    showPopupCart: false,
+    showPopupWishList: false,
   },
   mutations: {
     CURRENT_PRODUCT: (state, product) => {
@@ -55,8 +55,14 @@ export default createStore({
     ADD_PRODUCT: (state, product) => {
       state.cartProducts.push(product);
     },
-    SHOW_POPUP_CART: (state) => {
-      state.showPopupCart = !state.showPopupCart;
+    SHOW_POPUP_WISH_LIST: (state) => {
+      state.showPopupWishList = !state.showPopupWishList;
+    },
+    REMOVE_PRODUCT: (state, index) => {
+      state.cartProducts.splice(index, 1);
+    },
+    SHOW_MODAL: (state) => {
+      state.showModal = !state.showModal;
     },
   },
   actions: {
@@ -66,8 +72,14 @@ export default createStore({
     addProduct: (context, product) => {
       context.commit('ADD_PRODUCT', product);
     },
-    showOrHiddenPopupCart: (context) => {
-      context.commit('SHOW_POPUP_CART');
+    showOrHiddenPopupWishList: (context) => {
+      context.commit('SHOW_POPUP_WISH_LIST');
+    },
+    removeProduct: (context, index) => {
+      context.commit('REMOVE_PRODUCT', index);
+    },
+    showOrHiddenModal: (context) => {
+      context.commit('SHOW_MODAL');
     },
   },
   getters: {
@@ -80,8 +92,11 @@ export default createStore({
     getProductsInCart(state) {
       return state.cartProducts
     },
-    getPopupCart(state){
-      return state.showPopupCart
+    getPopupWishList(state){
+      return state.showPopupWishList
+    },
+    getShowModal(state){
+      return state.showModal
     },
   },
   modules: {
