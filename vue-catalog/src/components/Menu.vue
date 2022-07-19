@@ -3,6 +3,9 @@
     <nav class="nav">
       <ul class="nav-links">
         <li class="link">
+          <router-link :to="{ name: 'users' }">Usuarios</router-link>
+        </li>
+        <li class="link">
           <router-link to="/">All Prize</router-link>
         </li>
         <li class="link">
