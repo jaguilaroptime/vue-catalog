@@ -9,24 +9,24 @@
            {{ getProductsInCart.length }}
         </span>
       </btn>
-      <transition name="appear">
+      <Transition name="appear">
         <popupCart class="cart" v-if="getPopupWishList"/>
-      </transition>
+      </Transition>
     </mainMenu>
-    <transition name="leave">
+    <Transition name="leave">
       <router-view></router-view>
-    </transition>
+    </Transition>
     <maskBg v-if="getPopupWishList" @click="showPopupWishList"/>
 
     <h1>List Prizes</h1>
     <ul class="listOfProducts">
       <li v-for="(product, index) in products" :key="index" class="product">
-          <img :src="product.image">
-          <router-link to="/prize">
-            <h2 class="product-name"
-                @click="addCurrentProduct(product)">
-              {{ product.name }}
-            </h2>
+        <img :src="product.image">
+        <router-link to="/prize">
+          <h2 class="product-name"
+              @click="addCurrentProduct(product)">
+            {{ product.name }}
+          </h2>
         </router-link>
 
         <div class="product-point">
@@ -67,7 +67,7 @@ export default {
           getPopupWishList,
           addCurrentProduct,
           addProductToCart,
-          showPopupWishList
+          showPopupWishList,
         } = useCatalog()
 
       return {
@@ -76,7 +76,7 @@ export default {
           getPopupWishList,
           addCurrentProduct,
           addProductToCart,
-          showPopupWishList
+          showPopupWishList,
       }
 
     }
@@ -84,6 +84,32 @@ export default {
 </script>
 
 <style scoped>
+  .leave-enter-active, .leave-leave-active {
+    transition: all 1.2s;
+  }
+  .leave-enter, .leave-leave-to {
+    opacity: 0;
+    transform: translateX(-50%);
+  }
+
+  .appear-enter-active {
+    animation: appear-animation .5s;
+  }
+
+  .appear-leave-active {
+    animation: appear-animation .5s reverse;
+  }
+
+  @keyframes appear-animation {
+    0% {
+      transform: translateY(-50%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0%);
+      opacity: 1;
+    }
+  }
   .container {
     width: 100%;
   }
