@@ -3,6 +3,15 @@ import { v4 as uuidv4 } from 'uuid'
 
 export default createStore({
   state: {
+    user: {
+      id: uuidv4(),
+      firtsName: 'Jeenson',
+      lastName: 'Aguilar',
+      shippingAddress: 'Cra 78 BIS # 75A-94',
+      nameCompany: 'Green Company',
+      email: 'jaguilar@optimeconsulting.com',
+      totalPoints: 1500,
+    },
     notebooks: [
       {
         id: uuidv4(),
@@ -97,6 +106,9 @@ export default createStore({
     },
     getShowModal(state){
       return state.showModal
+    },
+    getUser(state){
+      return state.user
     },
   },
   modules: {

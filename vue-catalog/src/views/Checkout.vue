@@ -17,6 +17,26 @@
     <h3 class="total" v-if="getProductsInCart.length > 0">
       Total Points:  {{ totalPoints() }}
     </h3>
+
+    <div v-if="getProductsInCart.length > 0"  class="user">
+      <h1>Shipping Information</h1>
+      User: {{ getUser.firtsName + ' ' + getUser.lastName }} 
+      <FormKit 
+        type="text"
+        label="FormKit Input"
+        help="edit me to get started"
+      />
+      <FormKit
+      type="text"
+      name="name"
+      label="Your name"
+      placeholder="Jane Doe"
+      help="What do people call you?"
+      validation="required"
+    />
+    </div>
+    
+
   </div>
 </template>
 
@@ -27,6 +47,7 @@ export default {
   computed: {
     ...mapGetters([
       'getProductsInCart',
+      'getUser',
     ]),
   },
 
