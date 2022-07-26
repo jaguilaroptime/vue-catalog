@@ -19,23 +19,41 @@
     </h3>
 
     <div v-if="getProductsInCart.length > 0"  class="user">
-      <h1>Shipping Information</h1>
-      User: {{ getUser.firtsName + ' ' + getUser.lastName }} 
-      <FormKit 
-        type="text"
-        label="FormKit Input"
-        help="edit me to get started"
-      />
       <FormKit
-      type="text"
-      name="name"
-      label="Your name"
-      placeholder="Jane Doe"
-      help="What do people call you?"
-      validation="required"
-    />
+        type="form"
+        id="shipping-info"
+        submit-label="Save"
+        action="#"
+        method="post"
+      >
+        <h1>Shipping Information</h1>
+        <p>
+          User information for to do prize redention.
+        </p>
+      
+        <FormKit 
+          type="text"
+          name="fullName"
+          label="Full Name"
+          :value="getUser.firtsName + ' ' + getUser.lastName "
+          disabled
+        />
+
+        <FormKit
+          type="email"
+          name="email"
+          label="Email"
+          :value="getUser.email"
+          disabled
+        />
+
+        <FormKit
+          type="checkbox"
+          label="Terms of service"
+          validation="accepted"
+        />
+      </FormKit>
     </div>
-    
 
   </div>
 </template>
