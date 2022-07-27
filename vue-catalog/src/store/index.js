@@ -7,9 +7,14 @@ export default createStore({
       id: uuidv4(),
       firtsName: 'Jeenson',
       lastName: 'Aguilar',
-      shippingAddress: 'Cra 78 BIS # 75A-94',
-      nameCompany: 'Green Company',
       email: 'jaguilar@optimeconsulting.com',
+      profile: 'Sales Representative',
+      country: 'Colombia',
+      state: 'Cundinamarca',
+      city: 'Bogota',
+      address: 'Cra 78 BIS # 75A-94',
+      nameCompany: 'Green Company',
+      
       totalPoints: 1500,
     },
     notebooks: [

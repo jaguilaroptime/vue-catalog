@@ -25,33 +25,111 @@
         submit-label="Save"
         action="#"
         method="post"
+        #default="{ value }"
       >
         <h1>Shipping Information</h1>
         <p>
-          User information for to do prize redention.
+          User information to redeem a prize.
         </p>
+
+        <div class="double">
+          <FormKit 
+            type="text"
+            name="firtsName"
+            label="Name"
+            :value="getUser.firtsName"
+            disabled
+          />
+
+          <FormKit 
+            type="text"
+            name="lastName"
+            label="Last Name"
+            :value="getUser.lastName "
+            disabled
+          />
+        </div>
+        
+        <div class="double">
+          <FormKit
+            type="email"
+            name="email"
+            label="Email"
+            :value="getUser.email"
+            disabled
+          />
+
+          <FormKit 
+            type="text"
+            name="profile"
+            label="Profile"
+            :value="getUser.profile"
+            disabled
+          />
+        </div>
+        
+        <div class="double">
+          <FormKit 
+            type="text"
+            name="country"
+            label="Country"
+            :value="getUser.country"
+            disabled
+          />
+
+          <FormKit 
+            type="text"
+            name="state"
+            label="State"
+            :value="getUser.state"
+            disabled
+          />
+        </div>
+        
+        <div class="double">
+          <FormKit 
+            type="text"
+            name="city"
+            label="City"
+            :value="getUser.city"
+            disabled
+          />
+
+          <FormKit 
+            type="text"
+            name="address"
+            label="Shipping Address"
+            :value="getUser.address"
+            validation="required"
+            help="The shipment is subject to the scope of the suppliers in each country."
+          />
+        </div>
+
+        <div class="double">
+          <FormKit
+            type="tel"
+            name="phone"
+            label="Phone number"
+            placeholder="xxx-xxx-xxxx"
+            validation="required|matches:/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/"
+            :validation-messages="{
+              matches: 'Phone number must be in the format xxx-xxx-xxxx',
+            }"
+            validation-visibility="dirty"
+          />
+          
+          <FormKit
+            type="checkbox"
+            label="Terms and Conditions"
+            help="Do you agree to our terms of service?"
+            name="terms"
+            validation="required"
+            validation-visibility="dirty"
+          />
+        </div>
       
-        <FormKit 
-          type="text"
-          name="fullName"
-          label="Full Name"
-          :value="getUser.firtsName + ' ' + getUser.lastName "
-          disabled
-        />
+        <pre wrap>{{ value }}</pre>
 
-        <FormKit
-          type="email"
-          name="email"
-          label="Email"
-          :value="getUser.email"
-          disabled
-        />
-
-        <FormKit
-          type="checkbox"
-          label="Terms of service"
-          validation="accepted"
-        />
       </FormKit>
     </div>
 
