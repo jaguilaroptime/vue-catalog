@@ -1,5 +1,10 @@
 <template>
   <div class="checkout-box">
+    <div v-if="!getProductsInCart.length > 0" class="checkout-message">
+      <h3>No products...</h3>
+      <router-link to="./">Back to list of products</router-link>
+    </div>
+
     <ul class="checkout-list">
       <transition-group name="fade">
         <li v-for="(product, index) in getProductsInCart" :key="index" class="checkout-product">
@@ -10,13 +15,14 @@
         </li>
       </transition-group>
     </ul>
-    <div v-if="!getProductsInCart.length > 0" class="checkout-message">
-      <h3>No products...</h3>
-      <router-link to="./">Back to list of products</router-link>
-    </div>
     <h3 class="total" v-if="getProductsInCart.length > 0">
       Total Points:  {{ totalPoints() }}
+      <br/>
+      Total Points User {{ getUser.totalPoints }}
     </h3>
+
+    
+    
 
     <div v-if="getProductsInCart.length > 0"  class="user">
       <FormKit
@@ -140,6 +146,13 @@
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
+  data() {
+      return {
+          totalPointsUser: 0
+      }
+  },
+
+
   computed: {
     ...mapGetters([
       'getProductsInCart',
