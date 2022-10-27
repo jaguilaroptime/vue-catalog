@@ -1,6 +1,12 @@
 <template>
+  <div>
+    <div class="ui icon input" style="width: 100%">
+      <input type="text" placeholder="Search..." v-model="searchQuery" />
+      <i class="search icon"></i>
+    </div>
+
     <ul class="listOfProducts">
-      <li v-for="(product, index) in products" :key="index" class="product">
+      <li v-for="(product, index) in searchedProducts" :key="index" class="product">
         <img :src="product.image">
         <router-link to="/prize">
           <h2 class="product-name"
@@ -20,21 +26,35 @@
         </btn>
 
       </li>
-    </ul>  
+    </ul>
+  </div>
 </template>
 
 <script>
 import useCatalog from '../composables/useCatalog'
 import btn from '../components/Btn'
-
+import { computed, reactive, ref } from "vue";
 export default {
     components: {
       btn,
     },
     setup() {
+      const searchQuery = ref("");
+      const listProducts = reactive([]);
+
+      const searchedProducts = computed(() => {
+        return listProducts.filter((product) => {
+          return (
+            product.title
+              .toLowerCase()
+              .indexOf(searchQuery.value.toLowerCase()) != -1
+          );
+        });
+      });
+      
 
       const { 
-          products,
+          listProducts:products,
           getProductsInCart,
           getPopupWishList,
           addCurrentProduct,
@@ -49,6 +69,7 @@ export default {
           addCurrentProduct,
           addProductToCart,
           showPopupWishList,
+          searchedProducts,
       }
 
     }
